@@ -19,12 +19,15 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 
 
 Route::group(['prefix' => 'auth'], function () {
-    Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+  //user routes
     Route::post('/login', [RegisteredUserController::class, 'login']);
     Route::post('/register', [RegisteredUserController::class, 'store'])->name('user.store');
     Route::group(['middleware' => 'auth:sanctum'], function() {
         Route::get('/logout', [RegisteredUserController::class, 'logout']);
         Route::get('/user', [RegisteredUserController::class, 'user']);
+        //Dashboard routes
+        Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+        //call routes
         Route::get('/call', [CallController::class, 'index'])->name('call');
         Route::get('/call/{userID}/edit', [CallController::class, 'edit'])->name('call.edit');
         Route::delete('/call/{userID}', [CallController::class, 'destroy'])->name('call-delete');

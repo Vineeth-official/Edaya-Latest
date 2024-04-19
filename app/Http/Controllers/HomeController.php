@@ -40,7 +40,7 @@ class HomeController extends Controller
         $totalDuration = $calls->sum('duration');
         $data['totalCalls'] = $totalCalls;
         $data['totalDuration'] = $totalDuration;
-        return view('components.body',["data"=>$data]);
+        return $data;
     }
 
     /**
